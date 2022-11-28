@@ -1,5 +1,5 @@
 # comboSC
-**comboSC - Optimized therapy combination for pan-cancer based scRNA-Seq**
+**comboSC - Personalized tumor combination therapy prediction based on single cell RNA-seq**
 
 ![项目总流程图.jpg](https://github.com/EularTang/Figure_bed/blob/master/Project_workflow5.jpeg)
 #### Description
