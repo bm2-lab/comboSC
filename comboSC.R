@@ -10,24 +10,6 @@ rfgene <- args[5]
 Sample_id <- args[7]
 library(getopt)
 
-# 首先将第一个参数的具体信息进行描述
-# 每行五个，第五个可选，也就是说第五列可以不写
-# byrow 按行填充矩阵的元素
-# ncol  每行填充五个元素
-# spec <- matrix(
-#   c("first",  "f", 2, "integer", "This is first!",
-#     "second", "s", 1, "character",  "This is second!",
-#     "third",  "t", 2, "double",  "This is third!",
-#     "help",   "h", 0, "logical",  "This is Help!"),
-#   byrow=TRUE, ncol=5)
-
-# # 使用getopt方法
-# opt <- getopt(spec=spec)
-
-# # opt实际上就是一个列表，直接使用$来索引到对应的参数的值
-# print(opt$first)
-# print(opt$second)
-# print(opt$third)
 
 setwd("/home/tangchen/code/precision_medicine/Sctc")
 source("./resources/dep_data.R")
