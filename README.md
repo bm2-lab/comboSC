@@ -6,21 +6,15 @@
 
 1.comboSC is a scalable toolkit for personalized combination therapy recommendation based on the single-cell sequencing data of cancer patient.
 
-2.comboSC collects more than 30,000 small molecule/drugs, which come from cMAP and GDSC databases.
+2.comboSC collects more than 30,000 small molecule/drugs, which come from CMAP and GDSC databases.
 
-3.comboSC designed an efficient immune score for personalized immunity profile evaluation based on the single-cell sequencing data of cancer patient.
+3.comboSC designs an efficient immune score for personalized immunity profile evaluation based on the single-cell sequencing data of cancer patient.
 - For high immune score samples, comboSC recommends to use routine immunotherapy like immune checkpoint inhibitors.
 - For middle immune score samples, comboSC recommends to use combination therapy by combining immunotherapy with certaixn small molecule/drugs, which are predicted to regulate the immune microenvironment and boost the immunotherapy effect.
 - For low immune score samples, comboSC recommends to use combination therapy by combining small molecule/drugs to eliminate malignant cells directly.
 
-4.The current version of comboSC is tested for the following 10 cancer types:basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), melanoma, non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), and adult acute myeloid leukemia (AML),Endometrioid Carcinoma（UCEC）.
-## Accessible
-### Web
-The comboSC tools can be accessed from the webserver (www.comboSC.top).
-### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or greater. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
+4.The current version of comboSC have been applied to the following 10 cancer types,including: basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), and adult acute myeloid leukemia (AML),Endometrioid Carcinoma（UCEC）.
 
-## Test Data
 |Cancer |Number of samples|PMID of reference|
 |:---:|:---:|:---:|
 |BCC|6 |31359002|
@@ -42,7 +36,11 @@ Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It requi
 |AML|1 |34493872|
 |UCEC|2 |32103181|
 
-
+## Accessible
+### Web
+The comboSC tools can be accessed from the webserver (www.comboSC.top).
+### Github
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or greater. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
 
 ## Usage
 ### Input
@@ -75,7 +73,12 @@ comboSC.R [exp] [meta] [sim] [patid]
 - sim :Threshold of similarity between query cell and reference expression profile.
 - patid:If the input contains more than one patient, we need to specify the id of the patient to be calculated.
 ### Metadata specifications
-The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must be in the first column, corresponding to the column name of the gene expression profile. There are other columns to describe the cell information. The columns that must be included are: 1, `"patient"`, the patient id where the cell is located, if the sample has only one patient, the same value is sufficient. 2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML"`. 3, `"treatment"`, the time period of sampling, including, `"Pre ", "Post", "Duration"`
+The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must be in the first column, corresponding to the column name of the gene expression profile. There are other columns to describe the cell information. The columns that must be included are: 
+1, `"patient"`, the patient id where the cell is located, such as `"Su006", "Lung01"`.if the sample has only one patient, the same value is sufficient. 
+
+2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML"`. 
+
+3, `"treatment"`, the time period of sampling, including, `"Pre ", "Post", "Duration"`
 
 Lastly, due to the limitations of existing automated annotation tools in identifying cell types with similarity features, we recommend to use manual cell annotations in the metadata. The annotated cell types need to be stated in the `"cluster"` column. comboSC can recognize the following cell type names:
 |Input cell type names|Full name|
