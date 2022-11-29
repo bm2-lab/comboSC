@@ -40,7 +40,7 @@
 ### Web
 The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or greater. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or updated. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
 
 ## Usage
 ### Input
@@ -102,6 +102,6 @@ Lastly, due to the limitations of existing automated annotation tools in identif
 |NK_cells|Natural Killer Cells|
 
 ## Citation  
-Personalized tumor combination therapy prediction based on single cell RNA-seq(submited)
+Personalized tumor combination therapy prediction based on single cell RNA-seq(submitted)
 ## Contributing
 Bug reports, pull requests and other contributions are welcomed!
