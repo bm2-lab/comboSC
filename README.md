@@ -74,6 +74,7 @@ comboSC.R [exp] [meta] [sim] [patid]
 - patid:If the input contains more than one patient, we need to specify the id of the patient to be calculated.
 ### Metadata specifications
 The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must be in the first column, corresponding to the column name of the gene expression profile. There are other columns to describe the cell information. The columns that must be included are: 
+
 1, `"patient"`, the patient id where the cell is located, such as `"Su006", "Lung01"`.if the sample has only one patient, the same value is sufficient. 
 
 2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML"`. 
