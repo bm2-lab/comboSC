@@ -14,11 +14,11 @@
 - For low immune score samples, comboSC recommends to use combination therapy by combining small molecule/drugs to eliminate malignant cells directly.
 
 4.The current version of comboSC is tested for the following 10 cancer types:basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), melanoma, non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), and adult acute myeloid leukemia (AML),Endometrioid Carcinoma（UCEC）.
-## Accessiable
+## Accessible
 ### Web
-The comboSC tools can be access from the webserver (www.comboSC.top).
+The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Newly comboSC can be installed from GitHub. It required R, version 3.6.0 or greater. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or greater. Rstudio is also recommended.The required R packages are listed in `resources/Allpackage.R`.
 
 ## Test Data
 |Cancer |Number of samples|PMID of reference|
@@ -51,7 +51,7 @@ The model required three input files:
 
 1. **expression_matrix**, a expression profile of the samples where rows are genes, columns are cells, and the value is counts or TPM. 
 2. **cell_metadata**, a data frame, where rows are cells, and columns are cell attributes (such as cell type, detail cluster, tissues, samples, batch, etc.)
-3. **gene_metadata**, an data frame, where rows are gene id (e.g. genes), and columns are gene attributes( such as biotype, gc content, whether key gene, etc.)
+3. **gene_metadata**, a data frame, where rows are gene id (e.g. genes), and columns are gene attributes( such as biotype, gc content, whether key gene, etc.)
 
 ![input.png](http://www.combosc.top/combsc/static/images/metedata.png)
 
@@ -99,6 +99,6 @@ Lastly, due to the limitations of existing automated annotation tools in identif
 |NK_cells|Natural Killer Cells|
 
 ## Citation  
-doi:
+Personalized tumor combination therapy prediction based on single cell RNA-seq(submited)
 ## Contributing
 Bug reports, pull requests and other contributions are welcomed!
