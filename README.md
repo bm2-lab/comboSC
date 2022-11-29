@@ -6,7 +6,7 @@
 
 1.comboSC is a scalable toolkit for personalized combination therapy recommendation based on the single-cell sequencing data of cancer patient.
 
-2.comboSC collects more than 30,000 small molecule/drugs, which come from CMAP and GDSC databases.
+2.comboSC uses a large collection of molecule/drugs, which come from CMAP and GDSC databases.
 
 3.comboSC designs an efficient immune score for personalized immunity profile evaluation based on the single-cell sequencing data of cancer patient.
 - For high immune score samples, comboSC recommends to use routine immunotherapy like immune checkpoint inhibitors.
