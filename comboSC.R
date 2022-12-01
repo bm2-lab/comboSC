@@ -4,10 +4,8 @@ args <- commandArgs(trailingOnly = TRUE)
 
 ex <- args[1]
 meta <- args[2]
-resolution_rank <- args[3]
+Sample_id <- args[3]
 threshold <- args[4]
-rfgene <- args[5]
-Sample_id <- args[7]
 
 # library(getopt)
 # 首先将第一个参数的具体信息进行描述
