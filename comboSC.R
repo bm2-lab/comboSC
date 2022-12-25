@@ -18,9 +18,6 @@ source("./Construct_bipartite/intratumor/decluster.R")
 source("./Construct_bipartite/TMI/exhaut_vaccine.R")
 source("./Construct_bipartite/construct_bipartite.R")
 
-ex <- "/home/tangchen/code/precision_medicine/Sctc/resources/bcc_exp_006.csv.gz"
-meta <- "/home/tangchen/code/precision_medicine/Sctc/resources/bcc_meta_006.csv.gz"
-
 
 
 exp <-  fread(ex,data.table = FALSE)
@@ -30,8 +27,6 @@ exp = exp[, -1]
 metadata <- metadata[, -1]
 rownames(metadata) =unlist(metadata[, 1])
 
-pbmc <- readRDS("/home/tangchen/scRNA/RDS/bcc.rds")
-# pbmc <- subset(pbmc, subset = patient == "su001")
 
 COMBOSC <- function(exp, metadata,
                 res_rank = seq(0.4, 3, 0.2),
