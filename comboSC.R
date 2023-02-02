@@ -8,7 +8,6 @@ Sample_id <- args[3]
 threshold <- args[4]
 
 
-setwd("/home/tangchen/code/comboSC/")
 source("./resources/Allpackage.R")
 source("./resources/dep_data.R")
 source("./Data_preprocessing/scprocess.R")
