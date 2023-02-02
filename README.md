@@ -91,7 +91,7 @@ Lastly, due to the limitations of existing automated annotation tools in identif
 |CD8_act_T_cells|CD8+ activated T cells|
 |Endothelial|endothelial cells|
 |Fibroblasts|fibroblasts|
-|CAFs|cancer-associated fibroblastsMalignant|Malignant cells|
+|CAFs|cancer-associated fibroblasts|Malignant cells|
 |Plasma| plasma cells|
 |Tprolif| proliferating T cells|
 |DC|dendritic cells|
