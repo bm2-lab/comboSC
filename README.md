@@ -40,7 +40,7 @@
 ### Web
 The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or updated. Rstudio is also recommended.The required tada can be download in the [link](http://www.combosc.top/combsc/csv/example?name=rdata.zip). The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or updated. Rstudio is also recommended.The required rdata can be download in the [link](http://www.combosc.top/combsc/csv/example?name=rdata.zip). The required R packages are listed in `resources/Allpackage.R`.
 ## Usage
 ### Input
 
