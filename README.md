@@ -44,11 +44,10 @@ Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It requi
 ## Usage
 ### Input
 
-The model required three input files:
+The model required three two files:
 
 1. **expression_matrix**, a expression profile of the samples where rows are genes, columns are cells, and the value is counts or TPM. 
 2. **cell_metadata**, a data frame, where rows are cells, and columns are cell attributes (such as cell type, detail cluster, tissues, samples, batch, etc.)
-3. **gene_metadata**, a data frame, where rows are gene id (e.g. genes), and columns are gene attributes( such as biotype, gc content, whether key gene, etc.)
 
 ![input.png](http://www.combosc.top/combsc/static/images/metedata.png)
 
