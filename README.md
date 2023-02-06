@@ -40,7 +40,7 @@
 ### Web
 The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R, version 3.6.0 or updated. Rstudio is also recommended.The required rdata can be download in this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R(V3.6.0 or updated),Python(V3.6 or updated),[Tres](https://github.com/data2intelligence/Tres).The source code is available on this page,  and the full tool with dependency data can be downloaded from this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
 ## Usage
 ### Input
 
@@ -62,14 +62,23 @@ The result of the model will be a dataframe that contains the highest-scoring dr
 
 
 ## Running comboSC
+First the user needs to go to the directory of the comboSC folder in the terminal, such as `cd /home/user/comboSC/`.
 ### Command in terminal
+
 ```
-comboSC.R [exp] [meta] [sim] [patid]
+Rscript comboSC.R [exp] [meta] [sim] [patid]
 ```
-- exp: expression_matrix
-- meta:cell metadate in patients
+- exp: Expression_matrix
+- meta:Cell metadate in patients
 - sim :Threshold of similarity between query cell and reference expression profile.
 - patid:If the input contains more than one patient, we need to specify the id of the patient to be calculated.
+
+### Example
+```
+Rscript ./comboSC.R "bcc006.exp.gz" "bcc006.meta.gz" 0.5 282
+```
+The output of the model is in `./comboSC/Auxiliary`.
+
 ### Metadata specifications
 The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must be in the first column, corresponding to the column name of the gene expression profile. There are other columns to describe the cell information. The columns that must be included are: 
 
