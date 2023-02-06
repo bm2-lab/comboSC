@@ -40,11 +40,11 @@
 ### Web
 The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R(V3.6.0 or updated),Python(V3.6 or updated),[Tres](https://github.com/data2intelligence/Tres).The source code is available on this page,  and the full tool with dependency data can be downloaded from this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R(v3.6.0 or updated),Python(v3.6 or updated), and [Tres](https://github.com/data2intelligence/Tres).The source code is available on this page,  and the full tool with dependency data can be downloaded from this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
 ## Usage
 ### Input
 
-The model required three two files:
+The model required two files:
 
 1. **expression_matrix**, a expression profile of the samples where rows are genes, columns are cells, and the value is counts or TPM. 
 2. **cell_metadata**, a data frame, where rows are cells, and columns are cell attributes (such as cell type, detail cluster, tissues, samples, batch, etc.)
@@ -62,7 +62,7 @@ The result of the model will be a dataframe that contains the highest-scoring dr
 
 
 ## Running comboSC
-First the user needs to go to the directory of the comboSC folder in the terminal, such as `cd /home/user/comboSC/`.
+Please CD into the comboSC folder in the terminal, such as `cd /home/user/comboSC/`.
 ### Command in terminal
 
 ```
