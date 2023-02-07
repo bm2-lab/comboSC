@@ -24,10 +24,10 @@ classified <- function(eva,Sample_id = "su001") {
 Tre_pre <- function(pbmc,cancertype = "BCC",Sample_id = "008") {
     tumor_col <- c("CD8_mem_T_cells","CD8_act_T_cells","CD8_ex_T_cells","CD4_T_cells","Tcell_prolif","Tregs")
     pbmc <- subset(pbmc, subset = cluster %in% tumor_col)
-    gen <- read.table("./resources/All_hg19gene_len.txt",header = T,sep="\t")
+    gen <- read.table("./Resources/All_hg19gene_len.txt",header = T,sep="\t")
     rownames(gen) <- gen$Gene
     if(length(unique(pbmc@meta.data$patient))== 1){
-        Texp = fread("/home/tangchen/tools/Tres/Input/GSE123813_texp.txt", data.table = FALSE)
+        Texp = fread("./Immunity_evaluation/Reference/GSE123813_texp.txt", data.table = FALSE)
         gene<-intersect(rownames(pbmc@assays$RNA@counts),Texp[,1])
         expr <- pbmc@assays$RNA@counts[gene,]
         len<-gen[gene,]
@@ -35,10 +35,6 @@ Tre_pre <- function(pbmc,cancertype = "BCC",Sample_id = "008") {
         for(i in c(1:dim(expr)[2])){
             tpms[,i] <- countToTpm(expr[,i],effLen = len$Length)
         }
-        #tpms <- as.data.frame(apply(expr, 2, countToTpm, effLen = len$Length))
-        # cl <- makeCluster(3)  
-        # tpms <- as.data.frame(parApply(cl,expr, 2, countToTpm, effLen = len$Length))
-        # stopCluster(cl) 
         nexp <- log2(tpms/10+1)
         nex <- apply(nexp, 1, mean)
         Texp[Sample_id] <- nex
@@ -63,15 +59,10 @@ Tre_pre <- function(pbmc,cancertype = "BCC",Sample_id = "008") {
         nex <- apply(nexp, 1, mean)
         Texp[p] <- nex
     }}
-    # output <- paste("/home/tangchen/code/precision_medicine/Sctc/immunity_evaluation/Input/",strsplit(ex,"_")[[1]][2],"_texp.txt",sep = "")
-    output <- "/home/tangchen/code/precision_medicine/Sctc/immunity_evaluation/Input/ls.txt"
+    output <- "./Immunity_evaluation/Input/ls.txt"
     write.table(Texp,output,sep = "\t",row.names = FALSE,quote = FALSE)
-    # output2 = paste("/home/tangchen/code/precision_medicine/Sctc/immunity_evaluation/Output/tre_",basename(output),sep = "")
-    output2 <- "/home/tangchen/code/precision_medicine/Sctc/immunity_evaluation/Output/ls.txt"
+    output2 <- "./Immunity_evaluation/Output/ls.txt"
     command = paste("Tres.py -m predict -i ",output," -n 1 -o ",output2,sep = "")
-    print(command)
-    rm(expr,len,nexp,tpms)
-    gc()
     system(command)
     eva <-  fread(output2, data.table = FALSE)
     return(eva)
