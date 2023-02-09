@@ -40,7 +40,7 @@
 ### Web
 The comboSC tools can be accessed from the webserver (www.comboSC.top).
 ### Github
-Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R(v3.6.0 or updated),Python(v3.6 or updated), and [Tres](https://github.com/data2intelligence/Tres).The source code is available on this page,  and the full comboSC with dependency data can be downloaded from this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
+Local comboSC can be installed from https://github.com/bm2-lab/comboSC. It required R(v3.6.0 or updated),Python(v3.6 or updated), and [Tres](https://github.com/data2intelligence/Tres).The source code is available on this page,  the full and executable comboSC with dependency data can be downloaded from this [link](http://www.combosc.top/combsc/csv/example?name=comboSC.zip). The required R packages are listed in `resources/Allpackage.R`.
 ## Usage
 ### Input
 
