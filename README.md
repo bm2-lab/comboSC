@@ -75,7 +75,7 @@ Rscript comboSC.R [exp] [meta] [sim] [patid]
 
 ### Example
 ```
-Rscript ./comboSC.R "bcc006.exp.gz" "bcc006.meta.gz" 282 0.5
+Rscript ./comboSC.R "bcc006.exp.gz" "bcc006.meta.gz" 0.5 282
 ```
 The output of the model is in `./comboSC/Auxiliary`. The test data is availabe in [example data](http://www.combosc.top/combsc/csv/example?name=example.zip).
 
