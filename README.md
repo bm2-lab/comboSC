@@ -77,7 +77,7 @@ Rscript comboSC.R [exp] [meta] [sim] [patid]
 ```
 Rscript ./comboSC.R "bcc006.exp.gz" "bcc006.meta.gz" 282 0.5
 ```
-The output of the model is in `./comboSC/Auxiliary`.
+The output of the model is in `./comboSC/Auxiliary`. The test data is availabe in [example data](http://www.combosc.top/combsc/csv/example?name=example.zip).
 
 ### Metadata specifications
 The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must be in the first column, corresponding to the column name of the gene expression profile. There are other columns to describe the cell information. The columns that must be included are: 
