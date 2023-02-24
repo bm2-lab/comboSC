@@ -2,7 +2,6 @@
 **comboSC - Personalized tumor combination therapy prediction based on single cell RNA-seq**
 
 ![Fig_workflow](https://user-images.githubusercontent.com/37855187/221109476-43db2314-85f1-474e-af96-719f61978a38.jpg)
-.jpg)
 #### Description
 
 1.comboSC is a scalable toolkit for personalized combination therapy recommendation based on the single-cell sequencing data of cancer patient.
