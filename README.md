@@ -13,7 +13,7 @@
 - For middle immune score samples, comboSC recommends to use combination therapy by combining immunotherapy with certaixn small molecule/drugs, which are predicted to regulate the immune microenvironment and boost the immunotherapy effect.
 - For low immune score samples, comboSC recommends to use combination therapy by combining small molecule/drugs to eliminate malignant cells directly.
 
-4.The current version of comboSC have been applied to the following 10 cancer types,including: basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), and adult acute myeloid leukemia (AML),Endometrioid Carcinoma（UCEC）.
+4.The current version of comboSC have been applied to the following fifteen cancer types, including basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), Uterine Corpus Endometrioid Carcinoma (UCEC), non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), adult acute myeloid leukemia (AML), Uveal Melanoma (UVM), hyroid carcinoma (THCA), Kidney Renal clear cell carcinoma (KIRC), Synovial Sarcoma (SS) and Osteosarcoma (OS).
 
 |Cancer |Number of samples|PMID of reference|
 |:---:|:---:|:---:|
