@@ -104,7 +104,7 @@ cell3to1 <- function(mel_top,norm_drug) {
     return(group)
 }
 
-sin_scores <- function(drug_lefted01, drug_used, db_res = db_res ,cell_opted_weight = cell_opted_weight, full_ranking = "/home/tangchen/vde/full_ranking.csv") {
+sin_scores <- function(drug_lefted01, drug_used, db_res = db_res ,cell_opted_weight = cell_opted_weight, full_ranking = "./full_ranking.csv") {
 #' Greedy algorithm. 
     # rest_drug <<- as.vector(unique(drug_used$drug))
     mid_score <- data.frame("drugcomb" = "test", "score" = 1,stringsAsFactors =FALSE)

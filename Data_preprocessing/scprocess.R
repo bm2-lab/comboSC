@@ -49,7 +49,6 @@ Ana <- function(Pbmc){
     db_ = "./Resources/sc-type-master/ScTypeDB_full.xlsx"
     tissue = "Immune system" 
     gs_list = gene_sets_prepare(db_, tissue)
-    # pbmc <- readRDS("/home/tangchen/scRNA/RDS/bcc.rds")
     pbmc <- Pbmc
     es.max = sctype_score(scRNAseqData = pbmc[["RNA"]]@scale.data, scaled = TRUE, 
                         gs = gs_list$gs_positive, gs2 = gs_list$gs_negative) 

@@ -1,3 +1,11 @@
+'''
+Author: EularTang 37855187+EularTang@users.noreply.github.com
+Date: 2023-07-30 21:37:49
+LastEditors: EularTang 37855187+EularTang@users.noreply.github.com
+LastEditTime: 2023-08-01 03:07:59
+FilePath: /comboSC/Construct_bipartite/TMI/drug_match.py
+Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+'''
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
@@ -50,7 +58,6 @@ if __name__ == "__main__":
     input_df = sys.argv[1]
     output_df = sys.argv[2]
     df = pd.read_csv(input_df)
-    #df = pd.read_csv("/home/tangchen/public/png/deGene.csv")
     # genes=["DDIT4","HIG2","FLT1","ADM","SLC2A3","ZNF331"]
     # dg_value=[9.97,10.16,7.66,17.80,20.29,15.22]
     genes = list(df.iloc[:,0])

@@ -65,7 +65,6 @@ add_modu <- function(module_gene, matrix, rfgene) {
 
 only_modulegene <- function(expression.profile, module_gene) {
     #' Only select genes associated with cancer (
-    # "/home/tangchen/public/gene_module/essential_genes.txt")
     #' exp:only_modulegene(me,essential_genes)
     deducted <- expression.profile[
         rownames(expression.profile) %in% module_gene,
