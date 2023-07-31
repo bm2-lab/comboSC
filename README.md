@@ -1,7 +1,8 @@
 # comboSC
 **comboSC - Personalized tumor combination therapy prediction based on single cell RNA-seq**
-![fig2](https://github.com/bm2-lab/comboSC/assets/37855187/e1e65db7-e204-4a63-ae87-4509b09e3146)
+
 #### Description
+![Project_workflow6](https://github.com/bm2-lab/comboSC/assets/37855187/0870231c-94c3-4f87-9725-02eaa531c6cb)
 
 1.comboSC is a scalable toolkit for personalized combination therapy recommendation based on the single-cell sequencing data of cancer patient.
 
@@ -14,26 +15,36 @@
 
 4.The current version of comboSC have been applied to the following fifteen cancer types, including basal cell carcinoma (BCC), breast invasive carcinoma (BRCA), colorectal cancer (CRC), head and neck cancer (HNSC), Uterine Corpus Endometrioid Carcinoma (UCEC), non-small-cell lung cancer (NSCLC), pancreatic adenocarcinoma (PAAD), skin cutaneous melanoma (SKCM), liver hepatocellular carcinoma (LIHC), adult acute myeloid leukemia (AML), Uveal Melanoma (UVM), hyroid carcinoma (THCA), Kidney Renal clear cell carcinoma (KIRC), Synovial Sarcoma (SS) and Osteosarcoma (OS).
 
-|Cancer |Number of samples|PMID of reference|
-|:---:|:---:|:---:|
-|BCC|6 |31359002|
-|BRCA|1 |bioRxiv|
-|BRCA |1 |34493872|
-|CRC|7 |31359002|
-|HNSC|11 |29198524|
-|NSCLC|4 |31033233|
-|NSCLC |3 |32103181|
-|NSCLC |5 |31979687|
-|NSCLC |3 |bioRxiv|
-|PAAD|23 |31273297|
-|SKCM|1 |29198524|
-|SKCM |5 |3038455|
-|SKCM |1 |30250229|
-|SKCM |6 |27124452|
-|LIHC|1 |32103181|
-|LIHC |4 |31588021|
-|AML|1 |34493872|
-|UCEC|2 |32103181|
+| Cancer  | Number of samples | PMID of reference  |
+|:-------:|:-----------------:|:------------------:|
+| BCC     | 6                 | 31359002           |
+| BRCA    | 1                 | bioRxiv            |
+|         | 1                 | 34493872           |
+| CRC     | 7                 | 32302573           |
+|         | 5                 | 32505533           |
+| HNSC    | 11                | 29198524           |
+| NSCLC   | 4                 | 31033233           |
+|         | 3                 | 32103181           |
+|         | 5                 | 31979687           |
+|         | 2                 | 32675368           |
+|         | 3                 | bioRxiv            |
+| PAAD    | 23                | 31273297           |
+| SKCM    | 1                 | 29198524           |
+|         | 5                 | 3038455            |
+|         | 1                 | 30250229           |
+|         | 6                 | 27124452           |
+| LIHC    | 1                 | 32103181           |
+|         | 1                 | 31675496           |
+|         | 4                 | 31588021           |
+| AML     | 1  | 34493872   |
+|         | 4  | 32692727   |
+| UCEC    | 2  | 32103181   |
+| OS      | 4  | 34367994   |
+| UVM     | 7  | 31980621   |
+| KIRC    | 1  | 33504936   |
+| SS      | 5  | 33495604   |
+| THCA    | 5  | 33462507   |
+
 
 ## Accessible
 ### Web
@@ -83,7 +94,7 @@ The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must 
 
 1, `"patient"`, the patient id where the cell is located, such as `"Su006", "Lung01"`.if the sample has only one patient, the same value is sufficient. 
 
-2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML"`. 
+2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML", "THCA", "KIRC", "SS", "OS", "UVM"`. 
 
 3, `"treatment"`, the time period of sampling, including, `"Pre ", "Post", "Duration"`
 
