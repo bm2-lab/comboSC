@@ -23,11 +23,17 @@ classified <- function(eva,Sample_id = "su001") {
 
 Tre_pre <- function(pbmc,cancertype = "BCC",Sample_id = "008") {
     tumor_col <- c("CD8_mem_T_cells","CD8_act_T_cells","CD8_ex_T_cells","CD4_T_cells","Tcell_prolif","Tregs")
+    cancer_type <- c("BCC" ,"BRCA" ,"CRC" ,"HNSC" ,"NSCLC" ,"PAAD" ,"SKCM" ,"LIHC" ,"AML" ,"UCEC")
     pbmc <- subset(pbmc, subset = cluster %in% tumor_col)
     gen <- read.table("./Resources/All_hg19gene_len.txt",header = T,sep="\t")
     rownames(gen) <- gen$Gene
     if(length(unique(pbmc@meta.data$patient))== 1){
-        Texp = fread("./Immunity_evaluation/Reference/GSE123813_texp.txt", data.table = FALSE)
+        if(pbmc@meta.data$cancertype[2] %in% cancer_type){
+            Texp_path <- paste0("./Immunity_evaluation/Reference/",pbmc@meta.data$cancertype[2],"_texp.txt")
+            Texp = fread(Texp_path, data.table = FALSE)
+        }else{
+            Texp = fread("./Immunity_evaluation/Reference/ref_gen.txt", data.table = FALSE)
+        }
         gene<-intersect(rownames(pbmc@assays$RNA@counts),Texp[,1])
         expr <- pbmc@assays$RNA@counts[gene,]
         len<-gen[gene,]

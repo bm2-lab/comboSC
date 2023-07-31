@@ -1,10 +1,3 @@
-# Author:Tang Chen
-# Email: chentang@tongji.edu.cn
-# date: 2020-01-02 10:42:10
-# --------------
-# About project:
-
-
 ######################----filter cells--------#####################
 cell_filt <- function(exp, metadata) {
     pbmc <- CreateSeuratObject(counts = exp, meta.data = metadata)
@@ -51,12 +44,10 @@ rm_drop <- function(pbmc) {
 ###################################################################
 Ana <- function(Pbmc){
     lapply(c("dplyr","Seurat","HGNChelper"), library, character.only = T)
-    source("./resources/sc-type-master/R/gene_sets_prepare.R")
-    source("./resources/sc-type-master/R/sctype_score_.R")
-    db_ = "./resources/sc-type-master/ScTypeDB_full.xlsx"
-    tissue = "Immune system" # e.g. Immune system,Pancreas,Liver,Eye,Kidney,Brain,Lung,Adrenal,Heart,Intestine,Muscle,Placenta,Spleen,Stomach,Thymus 
-
-    # prepare gene sets
+    source("./Resources/sc-type-master/R/gene_sets_prepare.R")
+    source("./Resources/sc-type-master/R/sctype_score_.R")
+    db_ = "./Resources/sc-type-master/ScTypeDB_full.xlsx"
+    tissue = "Immune system" 
     gs_list = gene_sets_prepare(db_, tissue)
     # pbmc <- readRDS("/home/tangchen/scRNA/RDS/bcc.rds")
     pbmc <- Pbmc

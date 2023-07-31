@@ -1,19 +1,10 @@
 
-###################################################################
-######## ------creat dataset and Initial clustering------##########
-
 ################### ---tumor detail cluster----######################
 tumor_scale <- function(pbmc) {
 #' Typing cancer cells
-    tumor_col = c("Tumor_1", "Tumor_2", "Tumor", "Malignant","Malignant cells")
+    tumor_col <- c("Tumor_1", "Tumor_2", "Tumor", "Malignant")
     tumor_pbmc <- subset(pbmc, subset = cluster %in% tumor_col)
-    tumor_pbmc[["percent.mt"]] <- PercentageFeatureSet(tumor_pbmc, pattern = "^mt-")
-    tumor_pbmc <- NormalizeData(
-        object = tumor_pbmc,
-        normalization.method = "LogNormalize", scale.factor = 10000
-    )
-    tumor_pbmc <- FindVariableFeatures(tumor_pbmc)
-    tumor_pbmc <- ScaleData(tumor_pbmc, vars.to.regress = "percent.mt")
+    tumor_pbmc <- FindVariableFeatures(tumor_pbmc)    
     tumor_pbmc <- RunPCA(tumor_pbmc, npcs = 100, ndims.print = 1:5, nfeatures.print = 10)
     tumor_pbmc <- FindNeighbors(tumor_pbmc, reduction = "pca", dims = 1:70, nn.eps = 0.5)
     return(tumor_pbmc)
@@ -35,6 +26,15 @@ dimrandcluster <- function(pbmc) {
 ###################################################################
 ############# ---blast with reference cell line---#################
 ###################################################################
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,6 +64,8 @@ add_modu <- function(module_gene, matrix, rfgene) {
 }
 
 only_modulegene <- function(expression.profile, module_gene) {
+    #' Only select genes associated with cancer (
+    # "/home/tangchen/public/gene_module/essential_genes.txt")
     #' exp:only_modulegene(me,essential_genes)
     deducted <- expression.profile[
         rownames(expression.profile) %in% module_gene,
@@ -88,22 +90,19 @@ Sum_row <- function(df, n) {
         if (sum_row == 0) {
             dis_row <- c(dis_row, i)
         }
-        cat("suming bumber is:", i, "\n")
     }
     dis_row <- unlist(dis_row)
     del_len <- length(dis_row)
     for (j in c(1:del_len - 1)) {
         de <- dis_row[del_len - j]
         df <- df[-de, ]
-        cat("deleting bumber is:", de, "\\n")
     }
-    cat("Total delete:", del_len, "\\n")
     muti <- list(df, dis_row)
     return(df)
 }
 
 define_sce <- function(df, coldata = TRUE) {
-    #' Compute similarity [/home/tangchen/code/scRNA_code/scmap_lung.R]
+
     #' define our database
     if (coldata == TRUE) {
         coldata <- data.frame(cell = colnames(df), cell_type1 = colnames(df))
@@ -114,14 +113,16 @@ define_sce <- function(df, coldata = TRUE) {
     )
     logcounts(e) <- log2(normcounts(e) + 1)
     rowData(e)$feature_symbol <- rownames(e)
-    isSpike(e, "ERCC") <- grepl("^ERCC-", rownames(e))
+    # isSpike(e, "ERCC") <- grepl("^ERCC-", rownames(e))
+    is.spike <- grepl("^ERCC", rownames(e))
+    e <- splitAltExps(e, ifelse(is.spike, "ERCC", "gene"))
     e <- e[!duplicated(rownames(e)), ]
     return(e)
 }
 
 cell_coverage <- function(pbmc, scmapcluster_results2) {
 #' According to scmapcluster_results2, get how many cells
-#  are matched(not cluster);
+#  are matched(not cluster);now. cluster also
 #' Example:cell_matched <- cell_coverage(pbmc, scmapcluster_results2)
     matched_cluster <- unique(scmapcluster_results2$scmap_cluster_labs) %>%
         as.vector() %>%
@@ -137,10 +138,14 @@ cell_coverage <- function(pbmc, scmapcluster_results2) {
 }
 
 map <- function(sce = sce, rfgene = rfgene_rpkm, threshold = 0.5) {
+    #' begin scmap,threshold belong to similarity
     #' exp: map(rfgene_count,0.5)
     e <- define_sce(rfgene)
     sce <- selectFeatures(sce)
+    # if need pic ,please add , suppress_plot = FALSE;
     sce <- indexCluster(sce)
+    # if heatmap is needed
+    # MAY:heatmap(as.matrix(metadata(sce)$scmap_cluster_index))
     scmapcluster_results2 <<- scmapCluster(
         projection = e,
         index_list = list(yan = metadata(sce)$scmap_cluster_index),
@@ -151,43 +156,54 @@ map <- function(sce = sce, rfgene = rfgene_rpkm, threshold = 0.5) {
     return(cell_matched)
 }
 
+#map(sce, ccleandgdsc)
+
+
 ############################################################
 ###################### -----opt_cluster------###############
 ############################################################
 
-res_cov <- function(pbmc, restocluster,res, there, rfgene = rfgene_rpkm) {
+res_cov <- function(pbmc, restocluster,res, threshold, rfgene = rfgene_rpkm) {
     #' Under a certain resolution get the Coverage, print specific match case
     #' exp:res_cov(0.5)
     identiy <<- as.data.frame(unlist(restocluster[as.character(res)]))
     colnames(identiy) <- "cell_type1"
-    identiy["cell"] <- rownames(identiy) # finish the Securat's business
+    identiy["cell"] <- rownames(identiy)
     sce <<- define_sce(only_modulegene(pbmc@assays[[1]][],
                                     essential_genes), identiy)
-    result_map <- map(sce, only_modulegene(rfgene, essential_genes),threshold = there)
-    cat("Current res is: ", res,", Current coverage is: ", result_map, "\n")
+    result_map <- map(sce, only_modulegene(rfgene, essential_genes),threshold = threshold)
+
     return(result_map)
 }
 
-res_opt <- function(res_rank, there = 0.5, rfgene = rfgene_rpkm,Cores = 8,pbmc. = pbmc) {
+res_opt <- function(res_rank, threshold = 0.5, rfgene = rfgene_rpkm, pbmc. = pbmc) {
     #' Select the most appropriate resolution in the resolution of an interval
-    #' exp:res_opt(res_rank,0.3)
-    cl <- makeCluster(Cores, type="FORK", outfile = "./ls.txt")
-    restocluster <- parLapply(cl, res_rank, function(res) as.vector(FindClusters(pbmc, n.start = 10, resolution = res)@meta.data[paste("RNA_snn_res.",as.character(res),sep = "")]))
+    #' exp:llss=res_opt(res_rank,0.3)
+
+    cl <- makeCluster(4, type="FORK")
+    #registerDoParallel(cl) 
+    re <- function(res) as.vector(FindClusters(pbmc, n.start = 10, resolution = res)@meta.data[paste("RNA_snn_res.",as.character(res),sep = "")])
+    restocluster <- foreach(1, .combine="cbind", .packages = c("Seurat")) %dopar% re(res_rank)
+
     names(restocluster) <- res_rank
-    coverage <- parSapply(cl, res_rank, res_cov, restocluster = restocluster, there = there,pbmc = pbmc)
+    coverage <- sapply(res_rank, res_cov, restocluster = restocluster, threshold = threshold,pbmc = pbmc)
     stopCluster(cl)
     df <- data.frame(resolution = res_rank, coverage = coverage)
+
     resest <- res_rank[which.max(coverage)]
-    coverest <- res_cov(pbmc, resest, restocluster = restocluster, there = there)
+    coverest <- res_cov(pbmc, resest, restocluster = restocluster,threshold = threshold)
+
+
+
     return(resest)
 }
 
 
 
 main_optcluster <- function(res_rank = seq(0.4, 5, 0.2),
-                            there = 0.5,
+                            threshold = 0.5,
                             rfgene = rfgene_rpkm) {
-    best_res <- res_opt(res_rank, there, rfgene)
+    best_res <- res_opt(res_rank, threshold, rfgene)
     return(best_res)
 }
 
@@ -200,7 +216,6 @@ map_topn <- function(scmapcluster_results, num, rfgene = rfgene_rpkm) {
     #' tips:most_matched(scmapcluster_results,3)
     x <- as.vector(unique(scmapcluster_results$scmap_cluster_labs))
     x <- x[which(x != "unassigned")]
-    print("notices that col represents a class,not row")
     mml <- c()
     for (i in x) {
         exist <- scmapcluster_results$scmap_cluster_labs == i
@@ -277,21 +292,33 @@ pro_drug_df <- function(mel_top, rfdrug, not_write = TRUE, quan = "LN_IC50") {
     return(drug_df)
 }
 
+###################################################################
+########################--------main--------#######################
+###################################################################
+###################################################################
 
 ######################-----------------######################
 decluster <- function(pbmc,
-                    there = there,
+                    res_rank = seq(0.4, 3, 0.2),
+                    threshold = threshold,
                     rfgene = rfgene_rpkm,
                     essential_genes = essential_genes) {
-    pbmc <<- tumor_scale(pbmc)
-    res_rank <- seq(min(dim(pbmc)[2]/10000,0.4),max(dim(pbmc)[2]/2000,3),0.2)
-    identiy <<- as.data.frame(pbmc$seurat_clusters)
+    cat('###################################################\nStep3.1 is start!\n#################################################\n')
+    pbmc <- tumor_scale(pbmc)
+    pbmc <<- FindClusters(pbmc, n.start = 10)
+    cat('###################################################\nStep3.1 is OK!\n#################################################\n')
+    identiy <- as.data.frame(pbmc$seurat_clusters)
     colnames(identiy) <- "cell_type1"
     identiy["cell"] <- rownames(identiy)
     sce <<- define_sce(only_modulegene(pbmc@assays[[1]][], essential_genes),identiy)
-    best_res <- res_opt(pbmc = pbmc, res_rank = res_rank, there = there)
+    cat('###################################################\nStep3.2 is OK!\n#################################################\n')
+    #best_res <- main_optcluster(res_rank = res_rank, threshold = threshold)
+    best_res <- res_opt(pbmc = pbmc, res_rank = res_rank, threshold = threshold)
+    cat('###################################################\nStep3.3 is OK!\n#################################################\n')
     mel_top <<- map_topn(scmapcluster_results2, 10, rfgene_rpkm)
-    drug_df <- pro_drug_df(mel_top, rfdrug, "./resources/bio_matrix.csv", quan = "LN_IC50")
+    drug_df <- pro_drug_df(mel_top, rfdrug, "./Resources/bio_matrix.csv", quan = "LN_IC50")
     return(drug_df)
 }
+
+
 
