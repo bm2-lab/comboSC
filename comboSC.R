@@ -33,7 +33,6 @@ COMBOSC <- function(exp, metadata,
                 rfgene = rfgene_rpkm,
                 Output_line = 50,
                 Sample_id = "006") {
-                # essential_genes = essential_genes) 
     pbmc <- scrna_preprocess(exp, metadata)
     Patient_class <- Tre_pre(pbmc,Sample_id)           
     drug_df <- construct_bipartite(patient_class = Patient_class, pbmc, res_rank , there, rfgene , essential_genes)
@@ -44,6 +43,6 @@ solution_recommended <- COMBOSC(exp, metadata,
                         res_rank = seq(0.4, 3, 0.2),
                         there = threshold,
                         rfgene = rfgene_rpkm,
-                        Output_line = 100,
+                        Output_line = 50,
                         Sample_id = Sample_id)
 
