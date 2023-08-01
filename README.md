@@ -94,7 +94,7 @@ The cell metadata is a file in csv or csv.gz format, where the `"cell.id"` must 
 
 1, `"patient"`, the patient id where the cell is located, such as `"Su006", "Lung01"`.if the sample has only one patient, the same value is sufficient. 
 
-2, `"cancertype"`, the cancer type of the sample, must be one of the ten cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML", "THCA", "KIRC", "SS", "OS", "UVM"`. 
+2, `"cancertype"`, the cancer type of the sample, must be one of the fifteen cancer types mentioned in the description, including, `"BCC", " BRCA", "CRC", "HNSC", "SKCM", "NSCLC", "PAAD", "UCEC", "LIHC", "AML", "THCA", "KIRC", "SS", "OS", "UVM"`. 
 
 3, `"treatment"`, the time period of sampling, including, `"Pre ", "Post", "Duration"`
 
