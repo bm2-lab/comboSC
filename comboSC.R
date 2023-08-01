@@ -8,11 +8,11 @@ Sample_id <- args[3]
 threshold <- args[4]
 
 
-source("./resources/Allpackage.R")
-source("./resources/dep_data.R")
+source("./Resources/Allpackage.R")
+source("./Resources/dep_data.R")
 source("./Data_preprocessing/scprocess.R")
-source("./immunity_evaluation/immuscore.R")
-source("./intelligent_optimization/graph_optimization.R")
+source("./Immunity_evaluation/immuscore.R")
+source("./Intelligent_optimization/graph_optimization.R")
 source("./Construct_bipartite/intratumor/decluster.R")
 source("./Construct_bipartite/TMI/exhaut_vaccine.R")
 source("./Construct_bipartite/construct_bipartite.R")
