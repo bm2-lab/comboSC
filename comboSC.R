@@ -9,14 +9,13 @@ threshold <- args[4]
 
 
 source("./Resources/Allpackage.R")
-source("./Resources/dep_data.R")
 source("./Data_preprocessing/scprocess.R")
-source("./Immunity_evaluation/immuscore.R")
+source("./Immunity_evaluation/Immuscore_Tres.R")
 source("./Intelligent_optimization/graph_optimization.R")
 source("./Construct_bipartite/intratumor/decluster.R")
 source("./Construct_bipartite/TMI/exhaut_vaccine.R")
 source("./Construct_bipartite/construct_bipartite.R")
-
+load("./Resources/data_comboSC.rdata")
 
 
 exp <-  fread(ex,data.table = FALSE)
