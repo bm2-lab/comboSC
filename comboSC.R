@@ -42,14 +42,14 @@ COMBOSC <- function(exp, metadata,
                 Sample_id = "006") {
     pbmc <- scrna_preprocess(exp, metadata)
     Patient_class <- Immune_score(pbmc,Sample_id)           
-    drug_df <- construct_bipartite(patient_class = Patient_class, pbmc, res_rank = res_rank, threshold = threshold, rfgene =rfgene, essential_genes = essential_genes)
-    solution_recommended <- graph_optimization(mel_top, sin_res, patient_class = Patient_class, output_line = Output_line, sample_id = Sample_id)
+    drug_df <<- construct_bipartite(patient_class = Patient_class, pbmc = pbmc, res_rank = res_rank, threshold = threshold, rfgene =rfgene_rpkm, essential_genes = essential_genes)
+    solution_recommended <- graph_optimization(mel_top, sin_res, patient_class = Patient_class, Output_line = Output_line, sample_id = Sample_id)
 }  
 
 solution_recommended <- COMBOSC(exp, metadata,
-                        res_rank = seq(0.4, 3, 0.2),
+                        res_rank =  seq(0.4, 4, 0.1),
                         threshold = threshold,
                         rfgene = rfgene_rpkm,
-                        Output_line = 50,
+                        Output_line = 100,
                         Sample_id = Sample_id)
 
