@@ -18,10 +18,6 @@ source("./Construct_bipartite/TMI/exhaut_vaccine.R")
 source("./Construct_bipartite/construct_bipartite.R")
 load("./Resources/data_comboSC.rdata")
 
-# ex = "/home/tangchen/code/web/combscde/apache-tomcat-7.0.103/webapps/combsc/files/example/comboSC/Auxiliary/bcc_exp_006.csv.gz"
-# meta = "/home/tangchen/code/web/combscde/apache-tomcat-7.0.103/webapps/combsc/files/example/comboSC/Auxiliary/bcc_meta_006.csv.gz"
-# Sample_id = "282"
-# threshold <- 0.5
 
 
 
