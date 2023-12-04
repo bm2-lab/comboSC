@@ -120,6 +120,6 @@ Lastly, due to the limitations of existing automated annotation tools in identif
 |NK_cells|Natural Killer Cells|
 
 ## Citation  
-Personalized tumor combination therapy prediction based on single cell RNA-seq(submitted)
+Tang, C., Fu, S., Jin, X. et al. Personalized tumor combination therapy optimization using the single-cell transcriptome. Genome Med 15, 105 (2023). https://doi.org/10.1186/s13073-023-01256-6
 ## Contributing
 Bug reports, pull requests and other contributions are welcomed!
